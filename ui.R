@@ -7,7 +7,7 @@ library(solefinder)
 shinyUI(fluidPage(
   fluidRow(
     column(width = 12, class = "well",
-           h4("Lena!"),
+#           h4("Lena!"),
            fluidRow(
              column(width = 2,
                     radioButtons("radio_shoe1", label = h3("Shoe 1"),
@@ -35,7 +35,7 @@ shinyUI(fluidPage(
   ),
   fluidRow(
     column(width = 12, class = "well",
-           h4("Lena1!"),
+#           h4("Lena1!"),
            fluidRow(
              column(width = 2,
                     radioButtons("radio_shoe2", label = h3("Shoe 2"),

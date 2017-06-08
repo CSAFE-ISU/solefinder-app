@@ -42,12 +42,12 @@ shinyServer(function(input, output) {
   
   ## Complete image
   output$shoe1 <- renderPlot({
-    display(t(lena), method = "raster")
+    display(boot1, method = "raster")
     })
 
   ## Zoomed in image
   output$shoe1_zoomed_in <- renderPlot({
-    shoe1_cropped <- crop_image(t(lena), ranges_shoe1$x, ranges_shoe1$y)
+    shoe1_cropped <- crop_image(boot1, ranges_shoe1$x, ranges_shoe1$y)
     display(shoe1_cropped, method = "raster")
   })
   
@@ -125,12 +125,12 @@ shinyServer(function(input, output) {
   
   ## Complete image
   output$shoe2 <- renderPlot({
-    display(t(lena), method = "raster")
+    display(boot2, method = "raster")
   })
   
   ## Zoomed in image
   output$shoe2_zoomed_in <- renderPlot({
-    shoe2_cropped <- crop_image(t(lena), ranges_shoe2$x, ranges_shoe2$y)
+    shoe2_cropped <- crop_image(boot2, ranges_shoe2$x, ranges_shoe2$y)
     display(shoe2_cropped, method = "raster")
   })
   
