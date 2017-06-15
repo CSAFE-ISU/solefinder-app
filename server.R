@@ -19,7 +19,8 @@ shinyServer(function(input, output) {
   # Create a spot where we can store additional
   # reactive values for this session
   shoe1_points <- reactiveValues(pt1 = data.frame(x = 0, y = 0),    
-                                 pt2 = data.frame(x = 0, y = 0))    
+                                 pt2 = data.frame(x = 0, y = 0),    
+                                 pt3 = data.frame(x = 0, y = 0))    
   
   # Listen for clicks
   observe({
@@ -36,6 +37,8 @@ shinyServer(function(input, output) {
       isolate({
         shoe1_points$pt2 <- update_click(ranges_shoe1, input$shoe1_click)
       })
+    } else if (input$radio_shoe1 == 3) {
+      shoe1_points$pt3 <- update_click(ranges_shoe1, input$shoe1_click)
     }
     
   })
@@ -53,7 +56,7 @@ shinyServer(function(input, output) {
   
   ## Current point
   output$shoe1_points <- renderTable({
-    rbind(shoe1_points$pt1, shoe1_points$pt2)
+    rbind(shoe1_points$pt1, shoe1_points$pt2, shoe1_points$pt3)
   })
   
   # When a double-click happens, check if there's a brush on the plot.
@@ -79,29 +82,8 @@ shinyServer(function(input, output) {
   # Create a spot where we can store additional
   # reactive values for this session
   shoe2_points <- reactiveValues(pt1 = data.frame(x = 0, y = 0),    
-                                 pt2 = data.frame(x = 0, y = 0))    
-  
-  # # Listen for clicks
-  # observe({
-  #   # Initially will be empty
-  #   if (is.null(input$shoe2_click)){
-  #     return()
-  #   }
-  #   
-  #   if (input$radio_shoe2 == 1) {
-  #     isolate({
-  #       shoe2_points$pt1 <- data.frame(x = input$shoe2_click$x,
-  #                                      y = input$shoe2_click$y)
-  #     })
-  #   } else if (input$radio_shoe2 == 2) {
-  #     isolate({
-  #       shoe2_points$pt2 <- data.frame(x = input$shoe2_click$x,
-  #                                      y = input$shoe2_click$y)
-  #     })
-  #     
-  #   }
-  # })
-  # 
+                                 pt2 = data.frame(x = 0, y = 0),    
+                                 pt3 = data.frame(x = 0, y = 0))    
   
   # Listen for clicks
   observe({
@@ -117,6 +99,10 @@ shinyServer(function(input, output) {
     } else if (input$radio_shoe2 == 2) {
       isolate({
         shoe2_points$pt2 <- update_click(ranges_shoe2, input$shoe2_click)
+      })
+    } else if (input$radio_shoe2 == 3) {
+      isolate({
+        shoe2_points$pt3 <- update_click(ranges_shoe2, input$shoe2_click)
       })
     }
     
@@ -136,7 +122,7 @@ shinyServer(function(input, output) {
   
   ## Current point
   output$shoe2_points <- renderTable({
-    rbind(shoe2_points$pt1, shoe2_points$pt2)
+    rbind(shoe2_points$pt1, shoe2_points$pt2, shoe2_points$pt3)
   })
   
   # When a double-click happens, check if there's a brush on the plot.
