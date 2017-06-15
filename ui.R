@@ -11,7 +11,7 @@ shinyUI(fluidPage(
            fluidRow(
              column(width = 2,
                     radioButtons("radio_shoe1", label = h3("Shoe 1"),
-                                 choices = list("Point 1" = 1, "Point 2" = 2), 
+                                 choices = list("Point 1" = 1, "Point 2" = 2, "Point 3" = 3), 
                                  selected = 1),
                     tableOutput("shoe1_points")
              ),
@@ -39,7 +39,7 @@ shinyUI(fluidPage(
            fluidRow(
              column(width = 2,
                     radioButtons("radio_shoe2", label = h3("Shoe 2"),
-                                 choices = list("Point 1" = 1, "Point 2" = 2), 
+                                 choices = list("Point 1" = 1, "Point 2" = 2, "Point 3" = 3), 
                                  selected = 1),
                     tableOutput("shoe2_points")
              ),
