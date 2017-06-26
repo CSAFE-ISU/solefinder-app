@@ -13,7 +13,7 @@ shinyServer(function(input, output) {
   
   # Linked plots (left and right, first row)
   ranges_shoe1 <- reactiveValues(x = NULL, y = NULL)
-
+  
   
   
   # Create a spot where we can store additional
@@ -25,29 +25,20 @@ shinyServer(function(input, output) {
   # Listen for clicks
   observe({
     # Initially will be empty
-    if (is.null(input$shoe1_click)){
+    if (is.null(input$shoe1_click)) {
       return()
     }
-
-    if (input$radio_shoe1 == 1) {
-      isolate({
-        shoe1_points$pt1 <- update_click(ranges_shoe1, input$shoe1_click)
-      })
-    } else if (input$radio_shoe1 == 2) {
-      isolate({
-        shoe1_points$pt2 <- update_click(ranges_shoe1, input$shoe1_click)
-      })
-    } else if (input$radio_shoe1 == 3) {
-      shoe1_points$pt3 <- update_click(ranges_shoe1, input$shoe1_click)
-    }
-    
+    isolate({
+      shoe1_points[[paste0("pt", input$radio_shoe1)]] <- 
+        update_click(ranges_shoe1, input$shoe1_click)
+    })
   })
   
   ## Complete image
   output$shoe1 <- renderPlot({
     display(boot1, method = "raster")
-    })
-
+  })
+  
   ## Zoomed in image
   output$shoe1_zoomed_in <- renderPlot({
     shoe1_cropped <- crop_image(boot1, ranges_shoe1$x, ranges_shoe1$y)
@@ -71,7 +62,7 @@ shinyServer(function(input, output) {
       ranges_shoe1$y <- NULL
     }
   })
-
+  
   ## Second Row ---------------------------------------------------------
   
   # Linked plots (left and right, first row)
@@ -92,19 +83,10 @@ shinyServer(function(input, output) {
       return()
     }
     
-    if (input$radio_shoe2 == 1) {
-      isolate({
-        shoe2_points$pt1 <- update_click(ranges_shoe2, input$shoe2_click)
-      })
-    } else if (input$radio_shoe2 == 2) {
-      isolate({
-        shoe2_points$pt2 <- update_click(ranges_shoe2, input$shoe2_click)
-      })
-    } else if (input$radio_shoe2 == 3) {
-      isolate({
-        shoe2_points$pt3 <- update_click(ranges_shoe2, input$shoe2_click)
-      })
-    }
+    isolate({    
+      shoe2_points[[paste0("pt", input$radio_shoe2)]] <- 
+        update_click(ranges_shoe2, input$shoe2_click) 
+    })
     
   })
   
@@ -137,7 +119,7 @@ shinyServer(function(input, output) {
       ranges_shoe2$y <- NULL
     }
   })
-
+  
   ## Third Row ---------------------------------------------------------
   
   # Linked plots (left and right, first row)
@@ -157,8 +139,10 @@ shinyServer(function(input, output) {
     if (is.null(input$shoe3_click)){
       return()
     }
-    shoe3_points[[paste0("pt", input$radio_shoe3)]] <- 
-      update_click(ranges_shoe3, input$shoe3_click)
+    isolate({
+      shoe3_points[[paste0("pt", input$radio_shoe3)]] <- 
+        update_click(ranges_shoe3, input$shoe3_click)
+    })
   })
   
   
