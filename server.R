@@ -14,8 +14,6 @@ shinyServer(function(input, output) {
   # Linked plots (left and right, first row)
   ranges_shoe1 <- reactiveValues(x = NULL, y = NULL)
   
-  
-  
   # Create a spot where we can store additional
   # reactive values for this session
   shoe1_points <- reactiveValues(pt1 = data.frame(x = 0, y = 0),    
@@ -68,8 +66,6 @@ shinyServer(function(input, output) {
   # Linked plots (left and right, first row)
   ranges_shoe2 <- reactiveValues(x = NULL, y = NULL)
   
-  
-  
   # Create a spot where we can store additional
   # reactive values for this session
   shoe2_points <- reactiveValues(pt1 = data.frame(x = 0, y = 0),    
@@ -89,7 +85,6 @@ shinyServer(function(input, output) {
     })
     
   })
-  
   
   ## Complete image
   output$shoe2 <- renderPlot({
@@ -124,8 +119,6 @@ shinyServer(function(input, output) {
   
   # Linked plots (left and right, first row)
   ranges_shoe3 <- reactiveValues(x = NULL, y = NULL)
-  
-  
   
   # Create a spot where we can store additional
   # reactive values for this session

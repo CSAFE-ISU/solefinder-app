@@ -6,11 +6,11 @@ library(solefinder)
 
 shinyUI(fluidPage(
   fluidRow(
+    h4("Shoe 1"),
     column(width = 12, class = "well",
-           #           h4("Lena!"),
            fluidRow(
              column(width = 2,
-                    radioButtons("radio_shoe1", label = h3("Shoe 1"),
+                    radioButtons("radio_shoe1", label = "Select points to find parameters",
                                  choices = list("Point 1" = 1, "Point 2" = 2, "Point 3" = 3), 
                                  selected = 1),
                     tableOutput("shoe1_points")
@@ -34,11 +34,11 @@ shinyUI(fluidPage(
     
   ),
   fluidRow(
+    h4("Shoe 2"),
     column(width = 12, class = "well",
-           #           h4("Lena1!"),
            fluidRow(
              column(width = 2,
-                    radioButtons("radio_shoe2", label = h3("Shoe 2"),
+                    radioButtons("radio_shoe2", label = "Select points to find parameters",
                                  choices = list("Point 1" = 1, "Point 2" = 2, "Point 3" = 3), 
                                  selected = 1),
                     tableOutput("shoe2_points")
@@ -62,11 +62,11 @@ shinyUI(fluidPage(
     
   ),
   fluidRow(
+    h4("Shoe 3"),
     column(width = 12, class = "well",
-           #           h4("Lena1!"),
            fluidRow(
              column(width = 2,
-                    radioButtons("radio_shoe3", label = h3("Shoe 3"),
+                    radioButtons("radio_shoe3", label = "Select points to find parameters",
                                  choices = list("Point 1" = 1, "Point 2" = 2, "Point 3" = 3), 
                                  selected = 1),
                     tableOutput("shoe3_points")
