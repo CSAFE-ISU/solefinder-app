@@ -1,5 +1,5 @@
 # solefinder-app
-Shiny app designed to analyze shoesoles
+Shiny app designed to analyze shoesoles.
 
 ## Steps:
 

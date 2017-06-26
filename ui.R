@@ -7,7 +7,7 @@ library(solefinder)
 shinyUI(fluidPage(
   fluidRow(
     column(width = 12, class = "well",
-#           h4("Lena!"),
+           #           h4("Lena!"),
            fluidRow(
              column(width = 2,
                     radioButtons("radio_shoe1", label = h3("Shoe 1"),
@@ -35,7 +35,7 @@ shinyUI(fluidPage(
   ),
   fluidRow(
     column(width = 12, class = "well",
-#           h4("Lena1!"),
+           #           h4("Lena1!"),
            fluidRow(
              column(width = 2,
                     radioButtons("radio_shoe2", label = h3("Shoe 2"),
@@ -56,6 +56,34 @@ shinyUI(fluidPage(
                     h4("Click to select a point"),
                     plotOutput("shoe2_zoomed_in", height = 300,
                                click = "shoe2_click")
+             )
+           )
+    )
+    
+  ),
+  fluidRow(
+    column(width = 12, class = "well",
+           #           h4("Lena1!"),
+           fluidRow(
+             column(width = 2,
+                    radioButtons("radio_shoe3", label = h3("Shoe 3"),
+                                 choices = list("Point 1" = 1, "Point 2" = 2, "Point 3" = 3), 
+                                 selected = 1),
+                    tableOutput("shoe3_points")
+             ),
+             column(width = 5,
+                    h4("Select area to zoom in"),
+                    plotOutput("shoe3", height = 300,
+                               brush = brushOpts(
+                                 id = "shoe3_brush",
+                                 resetOnNew = TRUE
+                               )
+                    )
+             ),
+             column(width = 5,
+                    h4("Click to select a point"),
+                    plotOutput("shoe3_zoomed_in", height = 300,
+                               click = "shoe3_click")
              )
            )
     )

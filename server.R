@@ -137,5 +137,58 @@ shinyServer(function(input, output) {
       ranges_shoe2$y <- NULL
     }
   })
+
+  ## Third Row ---------------------------------------------------------
+  
+  # Linked plots (left and right, first row)
+  ranges_shoe3 <- reactiveValues(x = NULL, y = NULL)
+  
+  
+  
+  # Create a spot where we can store additional
+  # reactive values for this session
+  shoe3_points <- reactiveValues(pt1 = data.frame(x = 0, y = 0),    
+                                 pt2 = data.frame(x = 0, y = 0),    
+                                 pt3 = data.frame(x = 0, y = 0))    
+  
+  # Listen for clicks
+  observe({
+    # Initially will be empty
+    if (is.null(input$shoe3_click)){
+      return()
+    }
+    shoe3_points[[paste0("pt", input$radio_shoe3)]] <- 
+      update_click(ranges_shoe3, input$shoe3_click)
+  })
+  
+  
+  ## Complete image
+  output$shoe3 <- renderPlot({
+    display(boot2, method = "raster")
+  })
+  
+  ## Zoomed in image
+  output$shoe3_zoomed_in <- renderPlot({
+    shoe3_cropped <- crop_image(boot2, ranges_shoe3$x, ranges_shoe3$y)
+    display(shoe3_cropped, method = "raster")
+  })
+  
+  ## Current point
+  output$shoe3_points <- renderTable({
+    rbind(shoe3_points$pt1, shoe3_points$pt2, shoe3_points$pt3)
+  })
+  
+  # When a double-click happens, check if there's a brush on the plot.
+  # If so, zoom to the brush bounds; if not, reset the zoom.
+  observe({
+    brush3 <- input$shoe3_brush
+    if (!is.null(brush3)) {
+      ranges_shoe3$x <- c(brush3$xmin, brush3$xmax)
+      ranges_shoe3$y <- c(brush3$ymin, brush3$ymax)
+    } else {
+      ranges_shoe3$x <- NULL
+      ranges_shoe3$y <- NULL
+    }
+  })
   
 })
