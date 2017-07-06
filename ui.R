@@ -5,8 +5,19 @@ library(EBImage)
 library(solefinder)
 
 shinyUI(fluidPage(tabsetPanel(
-  tabPanel("tab1", "contents"),
-  tabPanel("tab2", 
+  tabPanel("Introduction Page", 
+           fluidRow(h1("Solefinder"))
+  ), # End Intro Page
+  tabPanel("Upload", 
+           fluidRow(
+             h1("Upload shoesoles images"),
+             column(width = 12, class = "well",
+                    fluidRow(
+                      column(width = 12,
+                             fileInput("img1", "First shoe-sole image"))
+                    )))
+  ), # End Intro Page
+  tabPanel("Compare shoe-soles", 
            fluidRow(
              h4("Shoe 1"),
              column(width = 12, class = "well",
@@ -90,7 +101,7 @@ shinyUI(fluidPage(tabsetPanel(
                     )
              )
            )
-           ),
+  ), # End Compare shoe-soles tab
   tabPanel("tab3", "contents")
 ) # End tabsetPanel
 ) # End fluidPage
