@@ -13,9 +13,13 @@ shinyUI(fluidPage(tabsetPanel(
              h1("Upload shoesoles images"),
              column(width = 12, class = "well",
                     fluidRow(
-                      column(width = 12,
-                             fileInput("img1", "First shoe-sole image"))
-                    )))
+                      column(width = 2,
+                             fileInput("img1", "First shoe-sole image",
+                                       accept = c(".tiff"))),
+                      column(width = 5,
+                             plotOutput("img1", height = 300))
+                    ) ## End first row
+             ))
   ), # End Intro Page
   tabPanel("Compare shoe-soles", 
            fluidRow(

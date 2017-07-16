@@ -1,4 +1,7 @@
 
+# Increase maximun upload size
+options(shiny.maxRequestSize=30*1024^2) 
+
 # This is the server logic for a Shiny web application.
 # You can find out more about building applications with Shiny here:
 #
@@ -8,6 +11,32 @@
 library(shiny)
 
 shinyServer(function(input, output) {
+  
+  ## ----------------------------------------------------------------
+  ##         Upload Image Tab
+  ## ----------------------------------------------------------------
+
+  
+  img1 <- reactive({
+    infile <- input$img1
+
+    if (is.null(infile)) return (NULL)
+
+    file.copy(infile$datapath,
+              paste0(infile$datapath, ".tiff"))
+
+    readImage(paste0(infile$datapath, ".tiff"))
+  })
+
+    output$img1 <- renderPlot({
+      img <- img1()
+      if (is.null(img)) {
+        display(boot1, method = "raster")
+      } else {
+        display(img1(), method = "raster")
+      }
+    })
+
   
   ## First Row ---------------------------------------------------------
   
